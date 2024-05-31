@@ -1,0 +1,99 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #ffffff, #becaef);
+  font-family: "Arial", sans-serif;
+}
+
+.login-form {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 40px 60px;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.login-form h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.login-form div {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px 2px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background: #f9f9f9;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.login-form input:focus {
+  border-color: #1127cb;
+  box-shadow: 0 0 8px rgba(23, 88, 216, 0.2);
+}
+
+.login-form input::placeholder {
+  color: #aaa;
+}
+
+.login-form button {
+  background-color: #3f64df;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 10px; /* 추가: 버튼 사이 간격 조절 */
+}
+
+.login-form button:hover {
+  background-color: #2575fc;
+  transform: translateY(-2px);
+}
+
+.login-form button:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(47, 56, 222, 0.5);
+}
+
+.login-form .forgot-password {
+  margin-top: 10px;
+  display: block;
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.login-form .forgot-password:hover {
+  color: #333;
+}
+
+.login-form .register-link {
+  margin-top: 10px;
+  display: block;
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.login-form .register-link:hover {
+  color: #333;
+}

@@ -1,0 +1,96 @@
+.Table-modal {
+  width: 700px;
+  height: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  border-radius: 10px;
+  background-color: white;
+  outline: none;
+  position: relative;
+}
+
+.Table-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Table_title {
+  background: rgba(255, 165, 0, 0.5);
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding: 15px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+}
+
+.Table_number {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  margin-top: 50px; /* Adjust to make space for the header */
+}
+
+.Table_number table {
+  margin-top: 20px; /* Add some space between title and table */
+}
+
+.Table_number button {
+  width: 100px;
+  height: 100px;
+  font-size: 24px;
+  margin: 20px 10px; /* Adjusted margin */
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.Table_number button.selected {
+  background-color: lightblue;
+  border: 2px solid blue;
+}
+
+.Select_btn {
+  color: white;
+  font-weight: bold;
+  background: rgba(255, 165, 0, 0.5);
+  width: 200px;
+  height: 50px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 5px; /* Add some space between table and button */
+  position: absolute;
+  bottom: 20px; /* Position at the bottom of the modal */
+}
+
+.Table_number .Usage_end_btn {
+  font-size: 15px;
+  height: 25px;
+  margin-top: -50px;
+  margin-bottom: -30px;
+  color: red;
+}
+
+@media (max-width: 1024px) and (min-height: 600px) {
+  .Table-modal {
+    width: 40%;
+  }
+}

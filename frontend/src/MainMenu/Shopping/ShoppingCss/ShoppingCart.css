@@ -1,0 +1,114 @@
+/* ShoppingCart.css */
+
+.ShoppingCart-Container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background-color: #fff;
+  border-left: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.ShoppingCart-Header {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+
+.ShoppingCart-Main {
+  padding: 10px;
+}
+
+.ShoppingCart-Pay {
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  text-align: center;
+}
+
+.ShoppingCart-Main button,
+.ShoppingCart-Pay button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.ShoppingCart-Main button:hover,
+.ShoppingCart-Pay button:hover {
+  background-color: #0056b3;
+}
+
+.ShoppingCart-Main span {
+  margin: 0 5px;
+  font-weight: bold;
+}
+
+/* 반응형 웹페이지 스타일 추가 */
+@media (max-width: 1200px) {
+  .ShoppingCart-Container {
+    width: 250px; /* 장바구니 너비 줄이기 */
+  }
+
+  .ShoppingCart-Main button,
+  .ShoppingCart-Pay button {
+    padding: 4px 8px; /* 버튼 크기 조정 */
+  }
+}
+
+@media (max-width: 1024px) and (min-height: 600px) {
+  .ShoppingCart-Container {
+    width: 300px; /* 1024*600 해상도에서 장바구니 너비 줄이기 */
+  }
+
+  .ShoppingCart-Main button,
+  .ShoppingCart-Pay button {
+    padding: 4px 8px; /* 버튼 크기 조정 */
+    font-size: 14px; /* 버튼 폰트 크기 조정 */
+  }
+}
+
+@media (max-width: 768px) {
+  .ShoppingCart-Container {
+    width: 200px; /* 장바구니 너비 더 줄이기 */
+  }
+
+  .ShoppingCart-Header,
+  .ShoppingCart-Main,
+  .ShoppingCart-Pay {
+    padding: 8px; /* 내부 패딩 줄이기 */
+  }
+
+  .ShoppingCart-Main button,
+  .ShoppingCart-Pay button {
+    padding: 3px 6px; /* 버튼 크기 더 줄이기 */
+    font-size: 14px; /* 버튼 폰트 크기 조정 */
+  }
+}
+
+@media (max-width: 480px) {
+  .ShoppingCart-Container {
+    width: 100%; /* 장바구니 너비를 화면 전체로 설정 */
+    height: 50%; /* 장바구니 높이를 화면의 절반으로 설정 */
+    bottom: 0;
+    top: auto; /* 상단 고정을 해제하고 하단에 고정 */
+  }
+
+  .ShoppingCart-Header,
+  .ShoppingCart-Main,
+  .ShoppingCart-Pay {
+    padding: 6px; /* 내부 패딩 더 줄이기 */
+  }
+
+  .ShoppingCart-Main button,
+  .ShoppingCart-Pay button {
+    padding: 2px 4px; /* 버튼 크기 더 줄이기 */
+    font-size: 12px; /* 버튼 폰트 크기 조정 */
+  }
+}

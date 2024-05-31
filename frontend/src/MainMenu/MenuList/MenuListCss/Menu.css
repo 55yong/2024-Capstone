@@ -1,0 +1,236 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+
+.menu-container {
+  display: flex;
+}
+
+.app-container {
+  margin-left: 150px; /* 사이드바 너비 + 여백 */
+  width: calc(100% - 220px);
+  padding: 20px;
+}
+
+.card-container {
+  display: flex;
+  height: 150px;
+  margin-right: 10px;
+}
+
+.card {
+  display: flex; /* 추가: flex를 사용하여 내부 아이템을 중앙에 배치 */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 13px;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.card img {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  image-rendering: optimizeQuality;
+  align-self: center;
+}
+
+.card p {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.login-status {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* 가운데 정렬 추가 */
+  width: 320px; /* 가로 길이를 더 길게 설정 */
+  height: auto;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px 30px; /* 여백을 늘려서 내용과의 간격을 벌림 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
+  margin-bottom: 20px;
+  text-align: center; /* 텍스트 가운데 정렬 */
+  font-family: "Poppins", sans-serif; /* Poppins 폰트 추가 */
+}
+
+.welcome-text {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.status-text {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 5px 0;
+}
+
+.status-on {
+  color: green;
+  font-weight: bold;
+}
+
+.status-off {
+  color: red;
+  font-weight: bold;
+}
+
+.coffee-card {
+  width: 171px;
+  padding: 10px;
+  text-align: center;
+}
+
+.coffee-card:first-child {
+  margin-right: 220px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(150px, 1fr)); /* 그리드 크기 조정 */
+  max-width: calc(
+    100% - 250px
+  ); /* 오른쪽 쇼핑 카트 공간만큼 가로 최대 크기 제한 */
+  width: 1000px;
+}
+
+.slider-container {
+  height: 100px;
+}
+
+.slider-controls {
+  margin-left: 365px;
+  max-width: 95%;
+  height: auto;
+  display: flex;
+  transform: translateY(15px); /* 버튼을 아래로 이동 */
+}
+
+.slider-controls button {
+  margin-right: 10px; /* 버튼 사이의 간격을 조금 좁힘 */
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}
+
+.slider-controls button:hover {
+  background-color: #0056b3;
+}
+
+.title {
+  font-size: 20px;
+  max-width: 95%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  transform: translateY(-20px);
+  margin-left: 10px; /* 제목을 왼쪽으로 이동 */
+}
+
+@media (max-width: 1024px) and (min-height: 600px) {
+  .card-container {
+    width: 75%;
+    font-size: 10px;
+    height: 30%;
+  }
+
+  .card {
+    height: 50%;
+  }
+
+  .card img {
+    transform: translateY(10px);
+  }
+
+  .coffee-card {
+    width: 50%;
+  }
+
+  .card-grid {
+    width: 70%;
+    grid-column-gap: 100px;
+  }
+
+  .slider-controls {
+    margin-left: 220px;
+  }
+}
+
+/* 반응형 웹페이지 스타일 추가 */
+@media (max-width: 1200px) {
+  .app-container {
+    margin-left: 100px;
+    width: 71%;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-container {
+    flex-direction: column;
+  }
+
+  .app-container {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .card-area {
+    margin-left: 0;
+    flex-direction: column;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .slider-controls {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .title {
+    margin-left: 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 80px;
+    height: 80px;
+  }
+
+  .card img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .slider-controls button {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .title {
+    font-size: 8px;
+  }
+}
