@@ -121,14 +121,14 @@
   padding: 8px 16px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #007bff;
+  background-color: #be5e24;
   color: #fff;
   border: none;
   border-radius: 4px;
 }
 
 .slider-controls button:hover {
-  background-color: #0056b3;
+  background-color: #824019;
 }
 
 .title {

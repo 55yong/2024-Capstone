@@ -29,6 +29,10 @@ const Login = () => {
     window.location.reload(); // 페이지 새로고침 추가
   };
 
+  const handleBackClick = () => {
+    History.go(-1);
+  };
+
   return (
     <div>
       {isLoggedIn ? (

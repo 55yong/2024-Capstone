@@ -16,7 +16,7 @@ const CoffeeCard = ({ name, image, description, price, onAddToCart }) => {
         <p>{description}</p>
         <h3 className="price">가격: {price}원</h3>
       </div>
-      <div className="text-container">
+      {/* <div className="text-container">
         <p>&nbsp;Sugar</p>
         <p>Ice</p>
       </div>
@@ -27,7 +27,7 @@ const CoffeeCard = ({ name, image, description, price, onAddToCart }) => {
         <button>20%</button>
         <button>40%</button>
         <button>60%</button>
-      </div>
+      </div> */}
       <button className="receive" onClick={handleAddToCart}>
         담기
       </button>

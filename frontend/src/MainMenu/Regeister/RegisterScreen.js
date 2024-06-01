@@ -90,6 +90,10 @@ const RegisterScreen = () => {
           />
         </div>
         <button type="submit">회원가입</button>
+        {/* eslint-disable-next-line no-restricted-globals */}
+        <button type="button" onClick={() => history.back()}>
+          돌아가기
+        </button>
       </form>
     </div>
   );

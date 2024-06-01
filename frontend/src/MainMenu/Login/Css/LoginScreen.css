@@ -2,8 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: linear-gradient(to right, #ffffff, #becaef);
+  height: 97vh;
+  background: linear-gradient(to right, #ffffff #adadad);
   font-family: "Arial", sans-serif;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .login-form input:focus {
-  border-color: #1127cb;
+  border-color: #824019;
   box-shadow: 0 0 8px rgba(23, 88, 216, 0.2);
 }
 
@@ -51,7 +51,10 @@
 }
 
 .login-form button {
-  background-color: #3f64df;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #be5e24;
   color: white;
   border: none;
   padding: 12px;
@@ -64,13 +67,13 @@
 }
 
 .login-form button:hover {
-  background-color: #2575fc;
+  background-color: #824019;
   transform: translateY(-2px);
 }
 
 .login-form button:focus {
   outline: none;
-  box-shadow: 0 0 8px rgba(47, 56, 222, 0.5);
+  box-shadow: 0 0 8px #be5e24;
 }
 
 .login-form .forgot-password {

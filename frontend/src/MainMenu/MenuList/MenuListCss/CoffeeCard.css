@@ -47,7 +47,7 @@
 
 .card-detail .price {
   font-size: 16px;
-  color: #007bff;
+  color: #be5e24;
   margin: 10px 0 0 0;
   font-weight: 700;
 }
@@ -64,9 +64,7 @@
 }
 
 .options {
-  display: flex;
   justify-content: space-between;
-  gap: 10px;
   margin-bottom: 5px; /* 간격을 줄였습니다 */
   transform: translateY(-10px); /* 위로 10px 올립니다 */
 }
@@ -92,7 +90,7 @@
   padding: 10px;
   font-size: 16px;
   margin-top: 10px;
-  background-color: #007bff;
+  background-color: #be5e24;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -102,7 +100,7 @@
 }
 
 .receive:hover {
-  background-color: #0056b3;
+  background-color: #824019;
 }
 
 /* 반응형 웹페이지 스타일 추가 */
@@ -114,6 +112,7 @@
 
   .options button {
     font-size: 12px;
+    padding: 5px;
   }
 
   .receive {

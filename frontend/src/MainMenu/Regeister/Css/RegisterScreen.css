@@ -2,14 +2,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 97vh;
   background: linear-gradient(to right, #ffffff, #becaef);
   font-family: "Arial", sans-serif;
 }
 
 .register-form {
   background: rgba(255, 255, 255, 0.9);
-  padding: 40px 60px;
+  padding: 30px 60px;
   border-radius: 10px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
   width: 100%;
@@ -42,7 +42,7 @@
 }
 
 .register-form input:focus {
-  border-color: #264eff;
+  border-color: #be5e24;
   box-shadow: 0 0 8px rgba(106, 17, 203, 0.2);
 }
 
@@ -51,7 +51,7 @@
 }
 
 .register-form button {
-  background-color: #4a81e0;
+  background-color: #be5e24;
   color: white;
   border: none;
   padding: 10px;
@@ -64,7 +64,7 @@
 }
 
 .register-form button:hover {
-  background-color: #2575fc;
+  background-color: #824019;
   transform: translateY(-2px);
 }
 

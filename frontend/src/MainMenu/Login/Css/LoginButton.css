@@ -1,6 +1,6 @@
 /* src/MainMenu/Login/Css/LoginButton.css */
 .button {
-  background-color: #2575fc; /* 기본 버튼 색상 */
+  background-color: #be5e24; /* 기본 버튼 색상 */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -10,14 +10,14 @@
   transition: background-color 0.3s ease, transform 0.3s ease;
   text-align: center;
   display: inline-block;
-  margin-left: 10px; /* 왼쪽에 여백 추가 */
+  margin-left: 3px; /* 왼쪽에 여백 추가 */
   margin-top: 10px; /* 위쪽에 여백 추가 */
   width: 80%; /* 너비를 동일하게 설정 */
   box-sizing: border-box; /* 패딩을 포함한 크기 설정 */
 }
 
 .button:hover {
-  background-color: #1a5bbf; /* 호버 시 약간 더 진한 색상 */
+  background-color: #824019; /* 호버 시 약간 더 진한 색상 */
   transform: scale(1.05);
 }
 

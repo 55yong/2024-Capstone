@@ -31,7 +31,7 @@
 
 .ShoppingCart-Main button,
 .ShoppingCart-Pay button {
-  background-color: #007bff;
+  background-color: #be5e24;
   color: #fff;
   border: none;
   padding: 5px 10px;
@@ -42,7 +42,7 @@
 
 .ShoppingCart-Main button:hover,
 .ShoppingCart-Pay button:hover {
-  background-color: #0056b3;
+  background-color: #824019;
 }
 
 .ShoppingCart-Main span {
