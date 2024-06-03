@@ -8,6 +8,13 @@ gpio.init_gpio(RELAY_PIN, gpio.GPIO_MODE_OUTPUT, 1);
 
 const app = express();
 
+async function setRelay(amount) {
+  gpio.set_gpio(RELAY_PIN, 0);
+
+  await new Promise(resolve => setTimeout(resolve, amount));
+  gpio.set_gpio(RELAY_PIN, 1);
+}
+
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(cors());
@@ -17,10 +24,9 @@ app.use("/sandbox-dev/api/v1/payments", router);
 app.post("/sandbox-dev/api/v1/payments/confirm", (req, res) => {
   const reqData = req.body;
 
-  gpio.set_gpio(RELAY_PIN, 0);
+  setRelay(reqData.amount);
 
   console.log(reqData);
-  console.log(reqData.amount);
 
   res.json({ data: reqData });
 });
