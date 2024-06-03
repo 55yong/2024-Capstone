@@ -75,7 +75,10 @@ export function SuccessPage() {
 
           <div className="w-100 button-group">
             <div className="flex" style={{ gap: "16px" }}>
-              <button className="btn w-100" onClick={() => navigate("/")}>
+              <button
+                className="btn w-100"
+                onClick={() => navigate("/")} // Use navigate to go to /menu
+              >
                 메인으로 가기
               </button>
             </div>

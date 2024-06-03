@@ -18,7 +18,8 @@ def get_secret(setting):
         error_msg = "Set the {} environment variable".format(setting)
         raise ImproperlyConfigured(error_msg)
 
-SECRET_KEY = get_secret("SECRET_KEY")
+# SECRET_KEY = get_secret("SECRET_KEY")
+SECRET_KEY = "test_gsk_docs_OaPz8L5KdmQXkzRz3y47BMw6"
 
 def confirm_payment_service(payment_info):
     payment_key = payment_info.get('paymentKey')

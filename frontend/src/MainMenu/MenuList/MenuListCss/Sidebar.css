@@ -46,7 +46,7 @@
   .SidebarListTitle img {
     width: 80px;
     height: 80px;
-    margin-left: 11.5px; /* 이미지 위치 조정 */
+    margin-left: 20px; /* 이미지 위치 조정 */
   }
 
   .SidebarListItem img {

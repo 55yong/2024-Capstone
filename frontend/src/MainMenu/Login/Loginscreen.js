@@ -10,7 +10,7 @@ const LoginScreen = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:8080/login", {
+    fetch("/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

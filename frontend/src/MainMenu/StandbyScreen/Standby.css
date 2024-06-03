@@ -1,9 +1,11 @@
-.Standby-Container img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%; /* 전체 화면 너비로 설정 */
-  height: 100%; /* 전체 화면 높이로 설정 */
-  background-color: #ffffff; /* 배경색 지정 */
-  cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능하다는 시각적 피드백 제공 */
-}
+
+  .Standby-Container img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw; /* 전체 화면 너비로 설정 */
+    height: 100vh; /* 전체 화면 높이로 설정 */
+    background-color: #ffffff; /* 배경색 지정 */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능하다는 시각적 피드백 제공 */
+  }
+  
