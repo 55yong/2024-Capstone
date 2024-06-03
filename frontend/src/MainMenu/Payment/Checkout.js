@@ -6,6 +6,8 @@ const generateRandomString = () => window.btoa(Math.random()).slice(0, 20);
 
 const CheckOut = ({ totalPrice, onClose }) => {
   const paymentWidgetRef = useRef(null);
+  const paymentMethodsWidgetRef = useRef(null);
+  const agreementWidgetRef = useRef(null);
   const [isPaymentWidgetReady, setIsPaymentWidgetReady] = useState(false);
 
   const handleClickPaymentButton = async () => {
@@ -27,30 +29,44 @@ const CheckOut = ({ totalPrice, onClose }) => {
   };
 
   useEffect(() => {
-    const initializePaymentWidget = async () => {
+    (async () => {
       try {
         const paymentWidget = await loadPaymentWidget(
-          "test_ck_XZYkKL4Mrjq5M4vpNEDkV0zJwlEW",
+          "test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm",
           ANONYMOUS
-        );
+        ); // 비회원 customerKey
 
-        paymentWidgetRef.current = paymentWidget;
+        if (paymentWidgetRef.current == null) {
+          paymentWidgetRef.current = paymentWidget;
+        }
 
-        paymentWidget.renderPaymentMethods(
-          "#payment-method",
-          { value: totalPrice },
+        /**
+         * 결제창을 렌더링합니다.
+         * @docs https://docs.tosspayments.com/reference/widget-sdk#renderpaymentmethods%EC%84%A0%ED%83%9D%EC%9E%90-%EA%B2%B0%EC%A0%9C-%EA%B8%88%EC%95%A1
+         */
+        const paymentMethodsWidget =
+          paymentWidgetRef.current.renderPaymentMethods(
+            "#payment-method",
+            { value: totalPrice },
+            { variantKey: "DEFAULT" }
+          );
+
+        /**
+         * 약관을 렌더링합니다.
+         * @docs https://docs.tosspayments.com/reference/widget-sdk#renderagreement%EC%84%A0%ED%83%9D%EC%9E%90-%EC%98%B5%EC%85%98
+         */
+        agreementWidgetRef.current = paymentWidgetRef.current.renderAgreement(
+          "#agreement",
           { variantKey: "DEFAULT" }
         );
 
-        paymentWidget.renderAgreement("#agreement", { variantKey: "DEFAULT" });
+        paymentMethodsWidgetRef.current = paymentMethodsWidget;
 
         setIsPaymentWidgetReady(true); // 결제 위젯이 초기화되었음을 설정합니다.
       } catch (error) {
         console.error("결제 위젯 초기화 실패:", error);
       }
-    };
-
-    initializePaymentWidget();
+    })();
   }, [totalPrice]);
 
   return (
