@@ -17,9 +17,9 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="checkout" element={<CheckoutPage />} />
         <Route path="/sandbox/success" element={<SuccessPage />} />
-        <Route path="/sandobx/fail" element={<FailPage />} />
+        <Route path="/sandbox/fail" element={<FailPage />} />
         <Route path="/login" element={<LoginScreen />} />
-        <Route path="/register" element={<RegisterScreen />} />{" "}
+        <Route path="/register" element={<RegisterScreen />} />
       </Routes>
     </Router>
   </React.StrictMode>

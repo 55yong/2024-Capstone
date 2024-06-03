@@ -45,6 +45,40 @@ function ShoppingCart({ items, removeFromCart, onCheckout }) {
     setPackageSelectOpen(false);
   };
 
+  const electCal = (price) => {
+    let duration = 0;
+    const basePrice = 4000;
+    const additionalPrice = 500;
+
+    if (price <= 0) {
+      return 0 + "분";
+    }
+
+    if (price >= basePrice) {
+      // Calculate base duration (2 hours)
+      duration += 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+      // Calculate additional duration
+      const additionalAmount = Math.floor(
+        (price - basePrice) / additionalPrice
+      );
+      duration += additionalAmount * 30 * 60 * 1000; // 30 minutes per 500 won in milliseconds
+    }
+
+    const hours = Math.floor(duration / (60 * 60 * 1000));
+    const minutes = Math.floor((duration % (60 * 60 * 1000)) / (60 * 1000));
+
+    // 시간과 분을 문자열로 합치기
+    let durationString = "";
+    if (hours > 0) {
+      durationString += hours + "시간 ";
+    }
+    if (minutes > 0) {
+      durationString += minutes + "분";
+    }
+
+    return durationString.trim(); // 공백 제거 후 반환
+  };
+
   const renderItems = () => {
     if (!items || items.length === 0) {
       return <p>장바구니에 담긴 상품이 없습니다.</p>;
@@ -86,6 +120,9 @@ function ShoppingCart({ items, removeFromCart, onCheckout }) {
           <div className="ShoppingCart-Main">
             <h3>주문 메뉴:</h3>
             {renderItems()}
+            <p style={{ fontWeight: "bold" }}>
+              전기 사용 가능시간 : {electCal(totalPrice)}
+            </p>
             <h3>합계: {totalPrice.toLocaleString()}원</h3>
           </div>
           <div className="ShoppingCart-Pay">

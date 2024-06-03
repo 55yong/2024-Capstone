@@ -25,7 +25,10 @@ export function SuccessPage() {
       });
 
       if (response.ok) {
+        const date = new Date();
         setIsConfirmed(true);
+
+        localStorage.setItem("Time", date.getTime());
       } else {
         const responseData = await response.json();
         throw new Error(responseData.error || "결제 승인 실패");

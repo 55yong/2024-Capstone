@@ -10,6 +10,7 @@ const TableSelect = ({ onClose, totalPrice, onCheckout }) => {
   const [tablePrices, setTablePrices] = useState({}); // Store prices for each table
   const [disabledTables, setDisabledTables] = useState([]);
   const intervalRef = useRef({}); // Ref for storing interval IDs
+  const [currentTime, setCurrentTime] = useState(null);
 
   // Load disabled tables from local storage on component mount
   useEffect(() => {
@@ -56,7 +57,7 @@ const TableSelect = ({ onClose, totalPrice, onCheckout }) => {
       const totalDuration = calculateTotalDuration(totalPrice);
 
       // Set end time for table's disable period
-      const endTime = new Date(new Date().getTime() + totalDuration);
+      const endTime = localStorage.getItem("Time") + totalDuration;
 
       // Update disabled tables
       const updatedDisabledTables = [...disabledTables, selectedTable];
@@ -223,32 +224,37 @@ const TableSelect = ({ onClose, totalPrice, onCheckout }) => {
                 </td>
               </tr>
               <tr>
-                {isTableDisabled(2) && (
-                  <button
-                    className="Usage_end_btn"
-                    onClick={() => handleUsageEnd(2)}
-                  >
-                    사용종료
-                  </button>
-                )}
+                <td>
+                  {isTableDisabled(2) && (
+                    <button
+                      className="Usage_end_btn"
+                      onClick={() => handleUsageEnd(2)}
+                    >
+                      사용종료
+                    </button>
+                  )}
+                </td>
 
-                {isTableDisabled(4) && (
-                  <button
-                    className="Usage_end_btn"
-                    onClick={() => handleUsageEnd(4)}
-                  >
-                    사용종료
-                  </button>
-                )}
-
-                {isTableDisabled(6) && (
-                  <button
-                    className="Usage_end_btn"
-                    onClick={() => handleUsageEnd(6)}
-                  >
-                    사용종료
-                  </button>
-                )}
+                <td>
+                  {isTableDisabled(4) && (
+                    <button
+                      className="Usage_end_btn"
+                      onClick={() => handleUsageEnd(4)}
+                    >
+                      사용종료
+                    </button>
+                  )}
+                </td>
+                <td>
+                  {isTableDisabled(6) && (
+                    <button
+                      className="Usage_end_btn"
+                      onClick={() => handleUsageEnd(6)}
+                    >
+                      사용종료
+                    </button>
+                  )}
+                </td>
               </tr>
             </tbody>
           </table>

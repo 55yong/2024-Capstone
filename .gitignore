@@ -1,8 +1,2 @@
-frontend/node_modules
-
-venv/lib
-venv/lib64
-
+node_modules
 secrets.json
-
-__pycache__

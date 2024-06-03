@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Standby from "./MainMenu/StandbyScreen/Standby.js";
 import Menu from "./MainMenu/MenuList/Menu.js";
-import CheckoutPage from "./MainMenu/Payment/Checkout.js";
+import CheckoutPage from "./MainMenu//Payment/Checkout.js";
 
 function App() {
   const [isMainMenuVisible, setIsMainMenuVisible] = useState(false);
