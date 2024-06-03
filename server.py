@@ -1,3 +1,4 @@
+import logging
 from flask import Flask, request, jsonify, session
 from flask_cors import CORS
 from payments_router import payments_bp
@@ -8,6 +9,8 @@ from sqlalchemy.exc import IntegrityError
 
 app = Flask(__name__)
 CORS(app)
+
+logging.basicConfig(level=logging.DEBUG)
 
 # "/sandbox-dev/api/v1/payments" 경로에 대한 블루프린트 사용
 app.register_blueprint(payments_bp, url_prefix='/sandbox-dev/api/v1/payments')
@@ -20,11 +23,22 @@ def confirm_payment():
     order_id = data.get("orderId")
     amount = data.get("amount")
 
+    app.logger.debug(f"Received payment confirmation request: paymentKey={payment_key}, orderId={order_id}, amount={amount}")
+
     # 결제 승인 로직을 호출
     confirm_response = confirm_payment_service(payment_key, order_id, amount)
 
+    app.logger.debug(f"Payment confirmation response: {confirm_response}")
+
     # 응답을 반환
     return jsonify({'data': confirm_response})
+
+@app.route('/relay', methods=['POST'])
+def relay():
+    data = request.get_json()
+    status = data.get("status")
+    amount = data.get("amount")
+    
 
 # 세션에 사용될 비밀키 설정
 app.secret_key = 'lsh190824!'

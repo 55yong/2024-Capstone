@@ -2,3 +2,5 @@ frontend/node_modules
 
 venv/lib
 venv/lib64
+
+secrets.json
