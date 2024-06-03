@@ -4,3 +4,5 @@ venv/lib
 venv/lib64
 
 secrets.json
+
+__pycache__
