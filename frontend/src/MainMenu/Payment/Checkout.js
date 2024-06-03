@@ -30,7 +30,7 @@ const CheckOut = ({ totalPrice, onClose }) => {
     const initializePaymentWidget = async () => {
       try {
         const paymentWidget = await loadPaymentWidget(
-          "test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm",
+          "test_ck_XZYkKL4Mrjq5M4vpNEDkV0zJwlEW",
           ANONYMOUS
         );
 
