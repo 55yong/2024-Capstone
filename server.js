@@ -13,7 +13,11 @@ app.use("/sandbox-dev/api/v1/payments", router);
 
 app.post("/sandbox-dev/api/v1/payments/confirm", (req, res) => {
   const reqData = req.body;
+
   console.log(reqData);
+  console.log(reqData.amount);
+
+  res.json({ data: reqData });
 });
 
 app.listen(5000, () => console.log("Server is Listening..."));
