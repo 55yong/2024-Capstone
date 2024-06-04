@@ -12,7 +12,7 @@ const TIME = 1800000;
 
 const app = express();
 
-const db = new sqlite3.Database("./db.sqlite");
+const db = new sqlite3.Database("./instance/db.sqlite");
 
 app.use(bodyParser.json());
 app.use(
@@ -47,7 +47,7 @@ app.use("/sandbox-dev/api/v1/payments", router);
 app.post("/sandbox-dev/api/v1/payments/confirm", (req, res) => {
   const reqData = req.body;
 
-  setRelay(reqData.amount);
+  //setRelay(reqData.amount);
 
   console.log(reqData);
 
@@ -72,21 +72,22 @@ app.post("/register", (req, res) => {
   const { username, password, nickname, phone, email } = req.body;
 
   if (!username || !password || !nickname || !phone || !email) {
-    return res.status(400).json({ message: "모든 필드를 작성해주세요." });
+    return res.status(400).json({ message: "Please fill in all fields." });
   }
 
+  // Adjusted INSERT statement to set mileage to 0 by default
   const stmt = db.prepare(
-    `INSERT INTO users (username, password, nickname, phone, email, mileage) VALUES (?, ?, ?, ?, ?, ?)`
+    `INSERT INTO users (username, password, nickname, phone, email, mileage) VALUES (?, ?, ?, ?, ?, 0)`
   );
+
   stmt.run([username, password, nickname, phone, email], function (err) {
     if (err) {
-      return res.status(400).json({ message: "이미 존재하는 사용자입니다." });
+      return res.status(400).json({ message: "The user already exists." });
     }
-    res.status(201).json({ message: "회원가입이 완료되었습니다." });
+    res.status(201).json({ message: "Registration successful." });
   });
   stmt.finalize();
 });
-
 // 로그인
 app.post("/login", (req, res) => {
   const { username, password } = req.body;

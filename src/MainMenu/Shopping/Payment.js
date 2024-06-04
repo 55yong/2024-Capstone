@@ -43,19 +43,12 @@ function Payment({ totalPrice, onCheckout, onClose }) {
     try {
       if (selectedMethod === "CREDITCARD") {
         console.log("카드 결제 처리");
-        if (isLoggedIn) {
-          await addMileage(username); // 100원 마일리지 적립
-          alert("마일리지가 적립되었습니다.");
-          window.location.reload(); // 페이지 새로고침
-        } else {
-          alert("로그인이 필요합니다.");
-        }
+        alert("결제가 완료되었습니다.");
+        window.location.reload(); // 페이지 새로고침
       } else if (selectedMethod === "MOBILE") {
         console.log("모바일 결제 처리");
         if (isLoggedIn) {
           await addMileage(username); // 100원 마일리지 적립
-        } else {
-          alert("로그인이 필요합니다.");
         }
         onCheckout(totalPrice); // onCheckout 함수 호출
         onClose(); // 모달 닫기

@@ -7,10 +7,10 @@ const TableSelect = ({ onClose, totalPrice, onCheckout }) => {
   const [modalIsOpen, setModalIsOpen] = useState(true);
   const [showPayment, setShowPayment] = useState(false);
   const [selectedTable, setSelectedTable] = useState(null);
-  const [tablePrices, setTablePrices] = useState({}); // Store prices for each table
   const [disabledTables, setDisabledTables] = useState([]);
-  const intervalRef = useRef({}); // Ref for storing interval IDs
-  const [currentTime, setCurrentTime] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태
+  const [username, setUsername] = useState(null); // 사용자 이름
+  const intervalRef = useRef({});
 
   // Load disabled tables from local storage on component mount
   useEffect(() => {
@@ -26,6 +26,7 @@ const TableSelect = ({ onClose, totalPrice, onCheckout }) => {
       }
     });
     setDisabledTables(updatedDisabledTables);
+    console.log("Loaded disabled tables:", updatedDisabledTables);
   }, []);
 
   // Automatically enable tables when their disable time is reached
@@ -47,6 +48,17 @@ const TableSelect = ({ onClose, totalPrice, onCheckout }) => {
     return () => intervals.forEach(clearTimeout);
   }, [disabledTables]);
 
+  useEffect(() => {
+    // 로그인된 사용자 정보를 sessionStorage에서 가져오기
+    const storedUsername = sessionStorage.getItem("username");
+    const loggedIn = sessionStorage.getItem("isLoggedIn");
+
+    if (loggedIn && storedUsername) {
+      setIsLoggedIn(true);
+      setUsername(storedUsername);
+    }
+  }, []);
+
   const handleTableClick = (tableNumber) => {
     setSelectedTable(tableNumber);
   };
@@ -57,11 +69,13 @@ const TableSelect = ({ onClose, totalPrice, onCheckout }) => {
       const totalDuration = calculateTotalDuration(totalPrice);
 
       // Set end time for table's disable period
-      const endTime = localStorage.getItem("Time") + totalDuration;
+      const endTime = new Date(new Date().getTime() + totalDuration);
+      console.log(`End time for table ${selectedTable}:`, endTime);
 
       // Update disabled tables
       const updatedDisabledTables = [...disabledTables, selectedTable];
       setDisabledTables(updatedDisabledTables);
+
       localStorage.setItem(
         "disabledTables",
         JSON.stringify(updatedDisabledTables)
@@ -94,14 +108,51 @@ const TableSelect = ({ onClose, totalPrice, onCheckout }) => {
     return duration;
   };
 
-  const isTableDisabled = (tableNumber) => {
-    return disabledTables.includes(tableNumber);
+  const addMileage = async (username, mileage) => {
+    try {
+      const response = await fetch("/add_mileage", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, mileage }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        console.log(data.message); // Log success message
+      } else {
+        console.error(data.message); // Log error message from server
+      }
+    } catch (error) {
+      console.error("마일리지 적립 중 에러 발생:", error);
+    }
   };
 
-  const handleUsageEnd = (tableNumber) => {
+  const isTableDisabled = (tableNumber) => {
+    const result = disabledTables.includes(tableNumber);
+    console.log(`Is table ${tableNumber} disabled?`, result);
+    return result;
+  };
+
+  const handleUsageEnd = async (tableNumber) => {
+    const remainingTime = calculateRemainingTime(tableNumber); // Get the remaining time
+    if (remainingTime > 0) {
+      const mileage = Math.floor(remainingTime / 60000) * 10; // 10 won for every minute
+      if (isLoggedIn) {
+        await addMileage(username, mileage); // Add the calculated mileage
+      }
+    }
     clearTimeoutCountdown(tableNumber);
     setSelectedTable(null); // Reset selected table
     alert(`테이블 ${tableNumber}의 사용이 종료되었습니다.`);
+  };
+
+  const calculateRemainingTime = (tableNumber) => {
+    const endTime = new Date(
+      localStorage.getItem(`table_${tableNumber}_endTime`)
+    );
+    const remainingTime = endTime - new Date();
+    return remainingTime > 0 ? remainingTime : 0;
   };
 
   const clearTimeoutCountdown = (tableNumber) => {
