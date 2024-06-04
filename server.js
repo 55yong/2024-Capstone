@@ -10,6 +10,7 @@ const app = express();
 
 const RELAY_PIN = 4;
 gpio.init_gpio(RELAY_PIN, gpio.GPIO_MODE_OUTPUT, 1);
+const TIME = 1800000; // 30분 = 1800초 = 1800000밀리초
 
 app.use(json());
 app.use(urlencoded({ extended: true }));
@@ -26,11 +27,19 @@ app.use(
   })
 );
 
+function convertAmountToMilliseconds(amount) {
+  // 500원당 1800000밀리초
+  return (amount / 500) * TIME;
+}
+
 async function setRelay(amount) {
   gpio.set_gpio(RELAY_PIN, 0);
 
-  await new Promise(resolve => setTimeout(resolve, amount));
+  const INACTIVE_TIME = convertAmountToMilliseconds(amount);
+
+  await new Promise(resolve => setTimeout(resolve, INACTIVE_TIME));
   gpio.set_gpio(RELAY_PIN, 1);
+  console.log(INACTIVE_TIME);
 }
 
 app.use("/sandbox-dev/api/v1/payments", router);
