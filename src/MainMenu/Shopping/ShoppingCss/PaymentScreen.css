@@ -1,12 +1,43 @@
 .Modal-Content {
   background-color: white;
-  padding: 20px;
   border-radius: 8px;
-  width: 40%; /* 모달 창의 너비를 조정합니다. */
+  width: 40%;
+  max-width: 500px;
+  padding-bottom: 20px; /* 모달 창의 세로 크기를 늘리기 위해 패딩 추가 */
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  overflow: hidden; /* 모달의 내용이 넘칠 때 잘리도록 설정 */
+}
+
+.Modal-Header {
+  background-color: #be5e24; /* 주황색 */
+  height: 60px; /* 헤더 높이 */
+  width: 100%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.Modal-Header h2 {
+  color: white;
+  margin: 0;
+  font-size: 20px;
+}
+
+.Close {
+  position: absolute;
+  top: 15px; /* 닫기 버튼을 중앙에 위치하도록 조정 */
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: white; /* 닫기 버튼을 흰색으로 변경 */
 }
 
 .payment-options {
@@ -19,35 +50,70 @@
   border: 1px solid #ccc;
   padding: 20px;
   cursor: pointer;
-  width: 25%;
+  width: 40%;
+  max-width: 150px;
   text-align: center;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, background-color 0.3s;
+  border-radius: 8px; /* 둥근 테두리 추가 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.payment-box img {
+  width: auto;
+  height: 50px;
+  margin-bottom: 10px;
 }
 
 .payment-box.selected {
   border-color: #be5e24;
-  background-color: #f0f8ff;
+  background-color: #fff5e6; /* 부드러운 주황색 배경 */
 }
 
 h2 {
   text-align: center; /* 제목을 가운데 정렬합니다. */
+  color: #333;
+  margin: 20px 0; /* 제목과 선택 박스 사이의 간격 조정 */
+}
+
+.total-amount {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 18px;
+  text-align: center;
+  margin: 10px auto; /* 상하단 마진을 줄여서 공간 최적화 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content; /* 가로 길이를 내용에 맞춤 */
+}
+
+.total-amount span {
+  margin-left: 10px;
+  color: #be5e24; /* 주황색 텍스트 */
 }
 
 button[type="submit"] {
   display: block;
-  margin: 20px auto; /* 중앙 정렬 및 상단 마진 추가 */
+  width: 200px;
+  margin: 10px auto; /* 상하단 마진을 줄여서 공간 최적화 */
+  margin-top: 20px;
   padding: 10px 20px; /* 내부 여백 */
   background-color: #be5e24; /* 배경색 */
   color: white; /* 텍스트 색상 */
   border: none; /* 테두리 없애기 */
-  border-radius: 5px; /* 둥근 테두리 */
+  border-radius: 20px; /* 둥근 테두리 */
   font-size: 16px; /* 폰트 크기 */
   cursor: pointer; /* 마우스 커서를 포인터로 변경 */
-  transition: background-color 0.3s; /* 배경색 변화에 대한 전환 효과 */
+  transition: background-color 0.3s, transform 0.3s; /* 배경색 변화에 대한 전환 효과 */
 }
 
 button[type="submit"]:hover {
   background-color: #824019; /* 호버 상태 배경색 변경 */
+  transform: translateY(-2px);
 }
 
 button[type="submit"]:focus {
@@ -56,6 +122,22 @@ button[type="submit"]:focus {
 
 @media (max-width: 1024px) and (min-height: 600px) {
   .Modal-Content {
-    transform: translateX(-300px);
+    width: 80%;
+    transform: translate(-50%, -50%);
+  }
+
+  .payment-box {
+    width: 45%;
+  }
+}
+
+@media (max-width: 600px) {
+  .Modal-Content {
+    width: 90%;
+    transform: translate(-50%, -50%);
+  }
+
+  .payment-box {
+    width: 80%;
   }
 }
