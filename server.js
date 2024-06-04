@@ -47,7 +47,7 @@ app.use("/sandbox-dev/api/v1/payments", router);
 app.post("/sandbox-dev/api/v1/payments/confirm", (req, res) => {
   const reqData = req.body;
 
-  //setRelay(reqData.amount);
+  setRelay(reqData.amount);
 
   console.log(reqData);
 
