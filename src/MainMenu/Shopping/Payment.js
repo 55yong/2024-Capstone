@@ -21,7 +21,7 @@ function Payment({ totalPrice, onCheckout, onClose }) {
 
   const addMileage = async (username) => {
     try {
-      const response = await fetch("http://localhost:5000/add_mileage", {
+      const response = await fetch("/add_mileage", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -30,7 +30,7 @@ function Payment({ totalPrice, onCheckout, onClose }) {
       });
       const data = await response.json();
       if (response.ok) {
-        console.log(data.message);
+        console.log(data.message); // 마일리지 적립이 정상적으로 처리되었을 때 콘솔에 출력
       } else {
         console.error(data.message);
       }
@@ -52,6 +52,11 @@ function Payment({ totalPrice, onCheckout, onClose }) {
         }
       } else if (selectedMethod === "MOBILE") {
         console.log("모바일 결제 처리");
+        if (isLoggedIn) {
+          await addMileage(username); // 100원 마일리지 적립
+        } else {
+          alert("로그인이 필요합니다.");
+        }
         onCheckout(totalPrice); // onCheckout 함수 호출
         onClose(); // 모달 닫기
       } else {
@@ -62,9 +67,9 @@ function Payment({ totalPrice, onCheckout, onClose }) {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    handlePaymentSubmit();
+    await handlePaymentSubmit(); // handlePaymentSubmit 함수를 async로 호출하여 마일리지 적립 완료까지 기다림
   };
 
   return (

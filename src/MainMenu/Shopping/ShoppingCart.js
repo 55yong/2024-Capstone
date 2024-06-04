@@ -46,37 +46,40 @@ function ShoppingCart({ items, removeFromCart, onCheckout }) {
   };
 
   const electCal = (price) => {
-    let duration = 0;
     const basePrice = 4000;
+    const baseDuration = 120; // 2 hours in minutes
     const additionalPrice = 500;
+    const additionalDuration = 30; // 30 minutes
 
-    if (price <= 0) {
-      return 0 + "분";
-    }
+    let totalDuration = 0;
 
+    // 4000원 당 2시간 추가
     if (price >= basePrice) {
-      // Calculate base duration (2 hours)
-      duration += 2 * 60 * 60 * 1000; // 2 hours in milliseconds
-      // Calculate additional duration
-      const additionalAmount = Math.floor(
-        (price - basePrice) / additionalPrice
-      );
-      duration += additionalAmount * 30 * 60 * 1000; // 30 minutes per 500 won in milliseconds
+      const baseUnits = Math.floor(price / basePrice);
+      totalDuration += baseUnits * baseDuration;
+      price -= baseUnits * basePrice;
     }
 
-    const hours = Math.floor(duration / (60 * 60 * 1000));
-    const minutes = Math.floor((duration % (60 * 60 * 1000)) / (60 * 1000));
+    // 나머지 금액에 대해 추가 시간 계산
+    if (price >= 4500) {
+      totalDuration += 150; // 2시간 30분 추가
+      price -= 4500;
+    } else if (price > 0) {
+      totalDuration += Math.floor(price / additionalPrice) * additionalDuration;
+    }
 
-    // 시간과 분을 문자열로 합치기
+    const hours = Math.floor(totalDuration / 60);
+    const minutes = totalDuration % 60;
+
     let durationString = "";
     if (hours > 0) {
-      durationString += hours + "시간 ";
+      durationString += `${hours}시간 `;
     }
     if (minutes > 0) {
-      durationString += minutes + "분";
+      durationString += `${minutes}분`;
     }
 
-    return durationString.trim(); // 공백 제거 후 반환
+    return durationString.trim();
   };
 
   const renderItems = () => {

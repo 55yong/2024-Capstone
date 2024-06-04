@@ -49,25 +49,25 @@ function Menu({ onCheckout }) {
 
   useEffect(() => {
     const loggedIn = sessionStorage.getItem("isLoggedIn");
-    const nickname = sessionStorage.getItem("nickname");
     if (loggedIn) {
       setIsLoggedIn(true);
-      setNickname(nickname);
+      fetchUserInfo(); // 사용자 정보 가져오기
     }
   }, []);
 
-  useEffect(() => {
-    const fetchMileage = async () => {
-      try {
-        const response = await axios.get("/sandbox-dev/api/v1/mileage");
+  const fetchUserInfo = async () => {
+    try {
+      const response = await axios.get("/get_user_info");
+      if (response.status === 200) {
+        setNickname(response.data.nickname);
         setMileage(response.data.mileage);
-      } catch (error) {
-        console.error("Error fetching mileage:", error);
+      } else {
+        console.error("Error fetching user info:", response.data.message);
       }
-    };
-
-    fetchMileage();
-  }, []);
+    } catch (error) {
+      console.error("Error fetching user info:", error);
+    }
+  };
 
   const removeFromCart = (itemToRemove) => {
     const existingItemIndex = cartItems.findIndex(

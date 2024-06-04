@@ -13,12 +13,61 @@ const RegisterScreen = () => {
 
   const navigate = useNavigate();
 
+  const validateUsername = (username) => {
+    const regex = /^[a-zA-Z0-9!@#$%^&*()_+=-]{4,15}$/;
+    return regex.test(username);
+  };
+
+  const validatePassword = (password) => {
+    const regex = /^[a-zA-Z0-9!@#$%^&*()_+=-]{4,15}$/;
+    return regex.test(password);
+  };
+
+  const validateEmail = (email) => {
+    const regex = /^[a-zA-Z0-9._%+-]+@(gmail\.com|naver\.com|daum\.net)$/;
+    return regex.test(email);
+  };
+
+  const validateNickname = (nickname) => {
+    return nickname.length >= 2 && nickname.length <= 12;
+  };
+
+  const validatePhone = (phone) => {
+    const regex = /^010-\d{4}-\d{4}$/;
+    return regex.test(phone);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 간단한 유효성 검사 추가
-    if (!username || !password || !nickname || !phone || !email) {
-      setError("모든 필드를 작성해주세요.");
+    if (!validateUsername(username)) {
+      alert(
+        "아이디는 4자에서 15자 사이의 숫자와 문자, 특수문자만 사용할 수 있습니다."
+      );
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      alert(
+        "비밀번호는 4자에서 15자 사이의 숫자와 문자, 특수문자만 사용할 수 있습니다."
+      );
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      alert(
+        "이메일은 gmail.com, naver.com, daum.net 도메인만 사용할 수 있습니다."
+      );
+      return;
+    }
+
+    if (!validateNickname(nickname)) {
+      alert("닉네임은 2자에서 12자 사이로 입력해주세요.");
+      return;
+    }
+
+    if (!validatePhone(phone)) {
+      alert("전화번호는 010-xxxx-xxxx 형식으로 입력해주세요.");
       return;
     }
 
@@ -32,7 +81,7 @@ const RegisterScreen = () => {
       });
 
       // 회원가입 성공 후 다음 페이지로 이동
-      navigate("/login"); // 경로로 수정
+      navigate("/login");
     } catch (error) {
       if (error.response) {
         // 서버 응답 오류 처리

@@ -22,6 +22,7 @@ const LoginScreen = () => {
         if (data.message === "로그인 성공!") {
           sessionStorage.setItem("isLoggedIn", true);
           sessionStorage.setItem("nickname", data.nickname); // 서버에서 닉네임 받아오기
+          sessionStorage.setItem("username", username); // 사용자 이름 저장
           alert("로그인 성공!");
           navigate("/"); // 메인 페이지로 리다이렉트
         } else {

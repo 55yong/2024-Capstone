@@ -1,0 +1,126 @@
+.update-profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 97vh;
+    background: linear-gradient(to right, #ffffff, #becaef);
+    font-family: "Arial", sans-serif;
+  }
+  
+  .update-profile-form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px 60px;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+  
+  .update-profile-form h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .update-profile-form div {
+    margin-bottom: 20px;
+    position: relative;
+  }
+  
+  .update-profile-form input {
+    width: 100%;
+    padding: 10px 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background: #f9f9f9;
+    transition: all 0.3s ease;
+    outline: none;
+  }
+  
+  .update-profile-form input:focus {
+    border-color: #be5e24;
+    box-shadow: 0 0 8px rgba(106, 17, 203, 0.2);
+  }
+  
+  .update-profile-form input::placeholder {
+    color: #aaa;
+  }
+  
+  .update-profile-form button {
+    background-color: #be5e24;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-left: 3px;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .update-profile-form button:hover {
+    background-color: #824019;
+    transform: translateY(-2px);
+  }
+  
+  .update-profile-form button:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(17, 73, 203, 0.5);
+  }
+  
+  /* 반응형 디자인 추가 */
+  
+  /* 중간 크기 화면 (768px 이하) */
+  @media (max-width: 768px) {
+    .update-profile-form {
+      padding: 20px 40px;
+      max-width: 90%;
+    }
+  
+    .update-profile-form h2 {
+      font-size: 20px;
+    }
+  
+    .update-profile-form input {
+      font-size: 14px;
+      padding: 8px 5px;
+    }
+  
+    .update-profile-form button {
+      font-size: 16px;
+      padding: 8px;
+    }
+  }
+  
+  /* 작은 화면 (480px 이하) */
+  @media (max-width: 480px) {
+    .update-profile-container {
+      padding: 10px;
+    }
+  
+    .update-profile-form {
+      padding: 15px;
+      max-width: 100%;
+    }
+  
+    .update-profile-form h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+  
+    .update-profile-form input {
+      font-size: 12px;
+      padding: 6px 5px;
+    }
+  
+    .update-profile-form button {
+      font-size: 14px;
+      padding: 6px;
+      margin-left: 0;
+    }
+  }
