@@ -41,7 +41,9 @@ gpio.init_gpio(RELAY_PIN, gpio.GPIO_MODE_OUTPUT, 1);
 
 function convertAmountToMilliseconds(amount) {
   // 500원당 1800000밀리초
-  return (amount / 500) * TIME;
+  // return (amount / 500) * TIME;
+  // 테스트 확인을 위해서 그냥 반환
+  return amount;
 }
 
 async function setRelay(amount) {
