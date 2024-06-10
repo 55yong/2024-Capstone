@@ -6,15 +6,16 @@ import bodyParser from "body-parser";
 import sqlite3 from "sqlite3";
 import session from "express-session";
 
+const app = express();
+const db = new sqlite3.Database("./instance/db.sqlite");
 const RELAY_PIN = 4;
-gpio.init_gpio(RELAY_PIN, gpio.GPIO_MODE_OUTPUT, 1);
 const TIME = 1800000;
 
-const app = express();
-
-const db = new sqlite3.Database("./instance/db.sqlite");
-
+app.use(json());
+app.use(cors());
 app.use(bodyParser.json());
+app.use(urlencoded({ extended: true }));
+app.use("/sandbox-dev/api/v1/payments", router);
 app.use(
   session({
     secret: "lsh190824!",
@@ -22,6 +23,21 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+// 테이블 생성
+db.serialize(() => {
+  db.run(`CREATE TABLE IF NOT EXISTS users (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          username TEXT UNIQUE NOT NULL,
+          password TEXT NOT NULL,
+          nickname TEXT NOT NULL,
+          phone TEXT NOT NULL,
+          email TEXT UNIQUE NOT NULL,
+          mileage INTEGER DEFAULT 0
+      )`);
+});
+
+gpio.init_gpio(RELAY_PIN, gpio.GPIO_MODE_OUTPUT, 1);
 
 function convertAmountToMilliseconds(amount) {
   // 500원당 1800000밀리초
@@ -38,11 +54,35 @@ async function setRelay(amount) {
   console.log(INACTIVE_TIME);
 }
 
-app.use(json());
-app.use(urlencoded({ extended: true }));
-app.use(cors());
+// 사용자 조회 함수
+async function getUserByUsername(username) {
+  const getUserQuery = `
+    SELECT * FROM users
+    WHERE username = ?
+  `;
+  return new Promise((resolve, reject) => {
+    db.get(getUserQuery, [username], (err, user) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(user);
+      }
+    });
+  });
+}
 
-app.use("/sandbox-dev/api/v1/payments", router);
+// 쿼리 실행 함수
+async function runQuery(query, params) {
+  return new Promise((resolve, reject) => {
+    db.run(query, params, function (err) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  });
+}
 
 app.post("/sandbox-dev/api/v1/payments/confirm", (req, res) => {
   const reqData = req.body;
@@ -52,19 +92,6 @@ app.post("/sandbox-dev/api/v1/payments/confirm", (req, res) => {
   console.log(reqData);
 
   res.json({ data: reqData });
-});
-
-// 테이블 생성
-db.serialize(() => {
-  db.run(`CREATE TABLE IF NOT EXISTS users (
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          username TEXT UNIQUE NOT NULL,
-          password TEXT NOT NULL,
-          nickname TEXT NOT NULL,
-          phone TEXT NOT NULL,
-          email TEXT UNIQUE NOT NULL,
-          mileage INTEGER DEFAULT 0
-      )`);
 });
 
 // 회원가입
@@ -263,35 +290,6 @@ app.put("/add_mileage", async (req, res) => {
   }
 });
 
-// 사용자 조회 함수
-async function getUserByUsername(username) {
-  const getUserQuery = `
-    SELECT * FROM users
-    WHERE username = ?
-  `;
-  return new Promise((resolve, reject) => {
-    db.get(getUserQuery, [username], (err, user) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(user);
-      }
-    });
-  });
-}
-
-// 쿼리 실행 함수
-async function runQuery(query, params) {
-  return new Promise((resolve, reject) => {
-    db.run(query, params, function (err) {
-      if (err) {
-        reject(err);
-      } else {
-        resolve();
-      }
-    });
-  });
-}
 app.listen(5000, () => console.log("Server is Listening..."));
 
 // 프로그램이 종료되기 전에 GPIO 리소스를 해제

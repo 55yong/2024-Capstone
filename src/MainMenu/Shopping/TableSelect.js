@@ -69,7 +69,9 @@ const TableSelect = ({ onClose, totalPrice, onCheckout }) => {
       const totalDuration = calculateTotalDuration(totalPrice);
 
       // Set end time for table's disable period
-      const endTime = new Date(new Date().getTime() + totalDuration);
+      const endTime = new Date(
+        parseInt(localStorage.getItem("Time")) + totalDuration
+      );
       console.log(`End time for table ${selectedTable}:`, endTime);
 
       // Update disabled tables
@@ -120,6 +122,7 @@ const TableSelect = ({ onClose, totalPrice, onCheckout }) => {
       const data = await response.json();
       if (response.ok) {
         console.log(data.message); // Log success message
+        alert("마일리지가 적립되었습니다.");
       } else {
         console.error(data.message); // Log error message from server
       }
@@ -145,6 +148,7 @@ const TableSelect = ({ onClose, totalPrice, onCheckout }) => {
     clearTimeoutCountdown(tableNumber);
     setSelectedTable(null); // Reset selected table
     alert(`테이블 ${tableNumber}의 사용이 종료되었습니다.`);
+    window.location.reload(); // 페이지 새로고침
   };
 
   const calculateRemainingTime = (tableNumber) => {

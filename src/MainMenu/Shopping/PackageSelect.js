@@ -20,6 +20,7 @@ const PackageSelect = ({ onClose, totalPrice, onCheckout }) => {
 
   const handlePackageClick = () => {
     closeModal(); // 상태 설정 후 모달 닫기
+    window.location.reload(); // 페이지 새로고침
   };
 
   return (
