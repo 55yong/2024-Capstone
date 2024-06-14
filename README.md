@@ -4,10 +4,6 @@
 
 React, Node.js를 사용하여 무인 카페 전기 도둑 방지 및 모든 계산 처리를 하는 키오스크 시스템을 개발했습니다.
 
-**프론트엔드** : 이성진(팀장), 임석현 <br>
-**디자인** : 윤민진 <br>
-**백엔드, 회로 구성** : 오용준 <br>
-
 ![슬라이드1](https://github.com/55yong/2024-Capstone/assets/132319467/a75a57ae-e974-406e-901a-d9134540010b)
 ![슬라이드2](https://github.com/55yong/2024-Capstone/assets/132319467/a4bc3b29-0731-4ce7-9e19-2bdb2bdf7458)
 ![슬라이드3](https://github.com/55yong/2024-Capstone/assets/132319467/f3a39f58-ba93-455c-b750-37032166afac)
