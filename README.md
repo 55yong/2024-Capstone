@@ -16,18 +16,3 @@ React, Node.js를 사용하여 무인 카페 전기 도둑 방지 및 모든 계
 ![슬라이드10](https://github.com/55yong/2024-Capstone/assets/132319467/81999e93-623d-4945-8a03-92f9ec9144a4)
 ![슬라이드11](https://github.com/55yong/2024-Capstone/assets/132319467/932b3eeb-35f8-4b0e-a78e-b8417055be47)
 ![슬라이드12](https://github.com/55yong/2024-Capstone/assets/132319467/00e0405a-bf99-4b84-9d05-437a1a64d94e)
-<h3>
-<details>
-  <summary>최종 시연 영상(비회원)</summary>
-
-  ![GIFMaker_me](https://github.com/55yong/2024-Capstone/assets/132319467/7b4a7254-e198-4aa1-b880-c8ff1a03265a)
-
-</details>
-<details>
-  <summary>최종 시연 영상(회원)</summary>
-
-  ![GIFMaker_me](https://github.com/55yong/2024-Capstone/assets/132319467/364fbc57-e561-4b37-91c0-24a510763056)
-  
-</details>
-</h3>
-
