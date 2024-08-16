@@ -1,7 +1,7 @@
 import express, { json, urlencoded } from "express";
 import cors from "cors";
 import router from "./payments.router.js";
-import gpio from "@iiot2k/gpio";
+// import gpio from "@iiot2k/gpio";
 import bodyParser from "body-parser";
 import sqlite3 from "sqlite3";
 import session from "express-session";
@@ -37,24 +37,24 @@ db.serialize(() => {
       )`);
 });
 
-gpio.init_gpio(RELAY_PIN, gpio.GPIO_MODE_OUTPUT, 1);
+// gpio.init_gpio(RELAY_PIN, gpio.GPIO_MODE_OUTPUT, 1);
 
-function convertAmountToMilliseconds(amount) {
-  // 500원당 1800000밀리초
-  // return (amount / 500) * TIME;
-  // 테스트 확인을 위해서 그냥 반환
-  return amount;
-}
+// function convertAmountToMilliseconds(amount) {
+//   // 500원당 1800000밀리초
+//   // return (amount / 500) * TIME;
+//   // 테스트 확인을 위해서 그냥 반환
+//   return amount;
+// }
 
-async function setRelay(amount) {
-  gpio.set_gpio(RELAY_PIN, 0);
+// async function setRelay(amount) {
+//   gpio.set_gpio(RELAY_PIN, 0);
 
-  const INACTIVE_TIME = convertAmountToMilliseconds(amount);
+//   const INACTIVE_TIME = convertAmountToMilliseconds(amount);
 
-  await new Promise(resolve => setTimeout(resolve, INACTIVE_TIME));
-  gpio.set_gpio(RELAY_PIN, 1);
-  console.log(INACTIVE_TIME);
-}
+//   await new Promise(resolve => setTimeout(resolve, INACTIVE_TIME));
+//   gpio.set_gpio(RELAY_PIN, 1);
+//   console.log(INACTIVE_TIME);
+// }
 
 // 사용자 조회 함수
 async function getUserByUsername(username) {
@@ -89,7 +89,7 @@ async function runQuery(query, params) {
 app.post("/sandbox-dev/api/v1/payments/confirm", (req, res) => {
   const reqData = req.body;
 
-  setRelay(reqData.amount);
+  // setRelay(reqData.amount);
 
   console.log(reqData);
 
@@ -295,9 +295,9 @@ app.put("/add_mileage", async (req, res) => {
 app.listen(5000, () => console.log("Server is Listening..."));
 
 // 프로그램이 종료되기 전에 GPIO 리소스를 해제
-process.on("SIGINT", function () {
-  gpio.set_gpio(RELAY_PIN, 1);
-  gpio.deinit_gpio(RELAY_PIN);
-  console.log(" -> program stopped");
-  process.exit();
-});
+// process.on("SIGINT", function () {
+//   gpio.set_gpio(RELAY_PIN, 1);
+//   gpio.deinit_gpio(RELAY_PIN);
+//   console.log(" -> program stopped");
+//   process.exit();
+// });
